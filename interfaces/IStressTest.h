@@ -28,8 +28,18 @@ namespace Exchange {
         enum { ID = ID_STRESSTEST };
 
         virtual uint32_t Start() = 0;
-        //virtual void Register(IStressTest::INotification* sink) = 0;
-        //virtual void Unregister(const IStressTest::INotification* sink) = 0;
+
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
+            enum { ID = ID_STRESSTEST_NOTIFICATION };
+
+            ~INotification() override = default;
+
+            // @brief Signals job done
+            virtual void JobDone() = 0;
+        };
+
+        virtual void Register(IStressTest::INotification* sink) = 0;
+        virtual void Unregister(const IStressTest::INotification* sink) = 0;
     };
 } // namespace Exchange
 } // namespace WPEFramework
