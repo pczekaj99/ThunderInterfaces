@@ -24,11 +24,12 @@ namespace WPEFramework {
 namespace Exchange {
 
     /* @json 1.0.0 */
-    struct EXTERNAL ISystemCommands : virtual public Core::IUnknown {
-        enum { ID = IS_STRESSTEST };
+    struct EXTERNAL IStressTest : virtual public Core::IUnknown {
+        enum { ID = ID_STRESSTEST };
 
-        virtual void Register(IVolumeControl::INotification* sink) = 0;
-        virtual void Unregister(const IVolumeControl::INotification* sink) = 0;
+        virtual uint32_t Start() = 0;
+        //virtual void Register(IStressTest::INotification* sink) = 0;
+        //virtual void Unregister(const IStressTest::INotification* sink) = 0;
     };
 } // namespace Exchange
 } // namespace WPEFramework
